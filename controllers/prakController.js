@@ -64,18 +64,47 @@ exports.loginConfirm = async (req, res) => {
   }
   
   if(CorrectPwd == pwd){
-    direct = "/temp?user=" + name;
+    direct = "/introduce?user=" + name;
     console.log(direct);
     res.redirect(direct);
   } else{
     res.redirect('/login');
   }
 
+};
 
+exports.introduce = async (req, res) => {
+  const user = req.query.user;
+  res.render('introduce', { user: user });
+};
+
+exports.map = async (req, res) => {
+  const user = req.query.user;
+  res.render('map', { user: user });
+};
+
+exports.playground = async (req, res) => {
+  const user = req.query.user;
+  let amusement;
+  
+  try {
+    await park_mod.selectAmusement().then(([rows]) => {
+      amusement = rows;
+    });
+  } catch (err) {
+    console.log(err);
+  }
+
+  res.render('playground', { user: user, amusement: amusement });
 };
 
 
 
 exports.temp = async (req, res) => {
+
   res.render('temp', { title: 'Express' });
+  const user = req.query.user;
+  console.log(user);
+  res.render('temp', { user: user });
+
 };

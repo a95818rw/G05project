@@ -1404,3 +1404,74 @@ section {
   color: #fff;
   text-decoration: none;
 }
+
+
+
+table {
+  border: 0;
+  border-collapse: collapse;
+  border-radius: 8px;
+  width: 100%;
+}
+th {
+  border: solid 1px #5ceffe;
+  padding: 16px 8px;
+}
+td {
+  border: solid 1px #5ceffe;
+  text-align: center;
+  padding: 8px;
+  color: #757575;
+}
+table td a{
+  background-color: #25b327;
+  color: white;
+  padding:5px 20px;
+  border-radius: 30px;
+  font-weight: bold;
+  text-decoration: none;
+}
+.popular {
+  position: relative;
+}
+.no1{
+  position: absolute;
+  top: -10px;
+  background: #bdcc28;
+  width: 60px;
+  font-size: 10px;
+  border-radius: 15px;
+  line-height: 1;
+  padding: 5px;
+}
+.basic {
+  background-color: #0ceffe;
+}
+.standard {
+  background-color: #00EC00;
+  border: 1px solid #00EC00;
+  color: white;
+}
+.liked {
+  border: 1px solid #FF8000;
+  background-color: #FF8000;
+  color: white;
+}
+.premium {
+  border: 1px solid #FF2D2D;
+  background-color: #FF2D2D;
+  color: white;
+}
+.price {
+  font-size: 20px;
+  font-weight: 800;
+}
+.price td {
+  color: black;
+}
+.main {
+  width: 80%;
+  margin: 20px auto;
+  justify-content: center;
+  align-items: center;
+}

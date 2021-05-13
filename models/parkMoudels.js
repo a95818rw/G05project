@@ -20,6 +20,10 @@ const UPDATE = class UPDATE {
     );
   }
 
+  static selectAmusement() {
+    return db.execute('SELECT * FROM amusement order by seq;');
+  }
+
 
 
 };
