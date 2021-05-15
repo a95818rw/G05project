@@ -10,9 +10,9 @@ exports.register = async (req, res) => {
 
 exports.adduser = async (req, res) => {
 
-    const name = req.query.name;
-    const email = req.query.email;
-    const pwd = req.query.pwd;
+    const name = req.body.name;
+    const email = req.body.email;
+    const pwd = req.body.pwd;
     var userlist;
     var x = 0;
 
@@ -48,8 +48,8 @@ exports.login = async (req, res) => {
 };
 
 exports.loginConfirm = async (req, res) => {
-  const name = req.query.name;
-  const pwd = req.query.pwd;
+  const name = req.body.name;
+  const pwd = req.body.pwd;
 
   var CorrectPwd;
   var direct;
