@@ -99,6 +99,51 @@ exports.playground = async (req, res) => {
 };
 
 
+exports.addLiked = async (req, res) => {
+  const user = req.body.user;
+  const amusementSeq = req.body.amusementSeq;
+  const name = req.body.name;
+  const x = req.body.x;
+  const y = req.body.y;
+
+  var temp;
+  var confirm = 0;
+  var direct;
+  direct = "/playground?user=" + user;
+  
+  try {
+    await park_mod.likeListConfirm(user, amusementSeq).then(([rows]) => {
+
+
+      try {
+        temp = rows[0].likedSeq;
+      } catch (error) {
+        confirm = 1;
+      }
+      
+    });
+  } catch (err) {
+    console.log(err);
+  }
+
+  if(confirm == 1){
+    try {
+      await park_mod.addLikeList(user, amusementSeq, name, x, y).then(([rows]) => {
+        res.redirect(direct);
+      });
+    } catch (err) {
+      console.log(err);
+      res.redirect(direct);
+    }
+  }
+  res.redirect(direct);
+};
+
+
+
+
+
+
 
 exports.temp = async (req, res) => {
 

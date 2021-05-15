@@ -77,7 +77,16 @@
         <td><%= amusement[i].seq%></td>
         <td class="popular"><%= amusement[i].name%></td>
         <td><%= amusement[i].liked%></td>
-        <td><a href="#">添加</a></td>
+        <td>
+          <form action="/addLiked" method="post">
+              <input type="hidden" class="form-control" name="user" value="<%= user%>" autocomplete="off">
+              <input type="hidden" class="form-control" name="amusementSeq" value="<%= amusement[i].seq%>" autocomplete="off">
+              <input type="hidden" class="form-control" name="name" value="<%= amusement[i].name%>" autocomplete="off">
+              <input type="hidden" class="form-control" name="x" value="<%= amusement[i].x%>" autocomplete="off">
+              <input type="hidden" class="form-control" name="y" value="<%= amusement[i].y%>" autocomplete="off">
+              <input type="submit" class="addLiked" value="添加"/>
+          </form>
+        </td>
       </tr>
     <% } %>
   </table>

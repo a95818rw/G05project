@@ -24,7 +24,19 @@ const UPDATE = class UPDATE {
     return db.execute('SELECT * FROM amusement order by seq;');
   }
 
+  static likeListConfirm(user, amusementSeq) {
+    return db.execute(
+      'select * from likelist where user=? and amusementSeq = ?;',
+      [user, amusementSeq]
+    );
+  }
 
+  static addLikeList(user, amusementSeq, name, x, y) {
+    return db.execute(
+      'INSERT INTO likelist (user, amusementSeq, amusementName, amusementX, amusementY) VALUES (?, ?, ?, ?, ?);',
+      [user, amusementSeq, name, x, y]
+    );
+  }
 
 };
 

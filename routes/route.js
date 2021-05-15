@@ -13,6 +13,7 @@ router.get('/playground', parkController.playground);
 //redirect
 router.get('/adduser', parkController.adduser);
 router.get('/loginConfirm', parkController.loginConfirm);
+router.post('/addLiked', parkController.addLiked);
 
 
 router.get('/temp', parkController.temp);
