@@ -139,17 +139,35 @@ exports.addLiked = async (req, res) => {
   res.redirect(direct);
 };
 
-
-
-
-
-
-
-exports.temp = async (req, res) => {
-
-  res.render('temp', { title: 'Express' });
+exports.liked = async (req, res) => {
   const user = req.query.user;
-  console.log(user);
-  res.render('temp', { user: user });
+  let likeList;
+  
+  try {
+    await park_mod.selectliked(user).then(([rows]) => {
+      likeList = rows;
+    });
+  } catch (err) {
+    console.log(err);
+  }
+  console.log(likeList);
+  res.render('liked', { user: user, likeList: likeList});
 
 };
+
+exports.deleteliked = async (req, res) => {
+  const user = req.body.user;
+  const seq = req.body.amusementSeq;
+  var direct;
+  direct = "/liked?user=" + user;
+  
+  try {
+    await park_mod.deleteliked(user, seq).then(([rows]) => {
+    });
+  } catch (err) {
+    console.log(err);
+    res.redirect(direct);
+  }
+  res.redirect(direct);
+};
+

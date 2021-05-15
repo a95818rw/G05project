@@ -1,7 +1,11 @@
-<html lang="en"><head>
+<html lang="en">
+
+<head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title><劍湖山世界></title>
+  <title>
+    <劍湖山世界>
+  </title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -10,7 +14,9 @@
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -30,7 +36,12 @@
   ======================================================== -->
 </head>
 
-<body class=""><button type="button" class="mobile-nav-toggle d-lg-none"><i class="icofont-navigation-menu"></i></button><button type="button" class="mobile-nav-toggle d-lg-none"><i class="icofont-navigation-menu"></i></button><button type="button" class="mobile-nav-toggle d-lg-none"><i class="icofont-navigation-menu"></i></button><button type="button" class="mobile-nav-toggle d-lg-none"><i class="icofont-navigation-menu"></i></button><button type="button" class="mobile-nav-toggle d-lg-none"><i class="icofont-navigation-menu"></i></button>
+<body class=""><button type="button" class="mobile-nav-toggle d-lg-none"><i
+      class="icofont-navigation-menu"></i></button><button type="button" class="mobile-nav-toggle d-lg-none"><i
+      class="icofont-navigation-menu"></i></button><button type="button" class="mobile-nav-toggle d-lg-none"><i
+      class="icofont-navigation-menu"></i></button><button type="button" class="mobile-nav-toggle d-lg-none"><i
+      class="icofont-navigation-menu"></i></button><button type="button" class="mobile-nav-toggle d-lg-none"><i
+      class="icofont-navigation-menu"></i></button>
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center">
@@ -41,7 +52,7 @@
       </div>
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          
+
           <li class="active"><a href="introduce?user=<%=user%>">介紹</a></li>
           <li class=""><a href="map?user=<%=user%>">地圖</a></li>
           <li class=""><a href="playground?user=<%=user%>">遊玩設施</a></li>
@@ -52,8 +63,10 @@
 
       <div class="header-social-links">
         <a href="https://www.facebook.com/janfusun0/" class="facebook"><i class="icofont-facebook"></i></a>
-        <a href="https://www.instagram.com/janfusunfancyworld/?hl=zh-tw" class="instagram"><i class="icofont-instagram"></i></a>
-        <a href="https://tw.linkedin.com/company/%E5%8A%8D%E6%B9%96%E5%B1%B1%E4%B8%96%E7%95%8C%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8" class="linkedin"><i class="icofont-linkedin"></i></a>
+        <a href="https://www.instagram.com/janfusunfancyworld/?hl=zh-tw" class="instagram"><i
+            class="icofont-instagram"></i></a>
+        <a href="https://tw.linkedin.com/company/%E5%8A%8D%E6%B9%96%E5%B1%B1%E4%B8%96%E7%95%8C%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8"
+          class="linkedin"><i class="icofont-linkedin"></i></a>
       </div>
 
     </div>
@@ -66,20 +79,27 @@
   <h1 align="center">遊玩設施</h1>
   <table>
     <tr>
-      <td class="basic" align="center">SEQ</td>
-      <td class="standard popular" align="center">設施名稱</td>
-      <td class="liked" align="center">喜愛人數</td>
-      <td class="premium" align="center">加入最愛</td>
-    </tr>
-    <tr class="price">
-      <td>3</td>
-      <td class="popular">幸福摩天輪</td>
-      <td>188</td>
-      <td><a href="#">添加</a></td>
+      <td class="likedSeq" align="center">SEQ</td>
+      <td class="likedName" align="center">設施名稱</td>
+      <td class="likedCount" align="center">喜愛人數</td>
+      <td class="deleteLiked" align="center">移除最愛</td>
     </tr>
 
+    <% for(var i=0; i< likeList.length; i++) { %>
+      <tr class="price">
+        <td><%= likeList[i].amusementSeq%></td>
+        <td class="popular"><%= likeList[i].amusementName%></td>
+        <td><%= likeList[i].liked%></td>
+        <td>
+          <form action="/deleteliked" method="post">
+            <input type="hidden" class="form-control" name="user" value="<%= user%>" autocomplete="off">
+            <input type="hidden" class="form-control" name="amusementSeq" value="<%= likeList[i].amusementSeq%>" autocomplete="off">
+            <input type="submit" class="delete" value="移除" />
+          </form>
+        </td>
+      </tr>
+      <% } %>
   </table>
-
 
 
 
@@ -116,10 +136,12 @@
           Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
         </div>
       </div>
-      <div class="social-links text-center text-md-right pt-3 pt-md-0"> 
+      <div class="social-links text-center text-md-right pt-3 pt-md-0">
         <a href="https://www.facebook.com/janfusun0/" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="https://www.instagram.com/janfusunfancyworld/?hl=zh-tw" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="https://tw.linkedin.com/company/%E5%8A%8D%E6%B9%96%E5%B1%B1%E4%B8%96%E7%95%8C%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        <a href="https://www.instagram.com/janfusunfancyworld/?hl=zh-tw" class="instagram"><i
+            class="bx bxl-instagram"></i></a>
+        <a href="https://tw.linkedin.com/company/%E5%8A%8D%E6%B9%96%E5%B1%B1%E4%B8%96%E7%95%8C%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8"
+          class="linkedin"><i class="bx bxl-linkedin"></i></a>
       </div>
     </div>
   </footer><!-- End Footer -->
@@ -139,13 +161,16 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-      <nav class="mobile-nav d-lg-none">
-        <ul>
-          <li class="active"><a href="introduce?user=<%=user%>">介紹</a></li>
-          <li class=""><a href="map?user=<%=user%>">地圖</a></li>
-          <li class=""><a href="playground?user=<%=user%>">遊玩設施</a></li>
-          <li class=""><a href="liked?user=<%=user%>">願望清單</a></li>
-          <li class=""><a href="login">登出</a></li>
-        </ul>
-      </nav><div class="mobile-nav-overly"></div>
-</body></html>
+  <nav class="mobile-nav d-lg-none">
+    <ul>
+      <li class="active"><a href="introduce?user=<%=user%>">介紹</a></li>
+      <li class=""><a href="map?user=<%=user%>">地圖</a></li>
+      <li class=""><a href="playground?user=<%=user%>">遊玩設施</a></li>
+      <li class=""><a href="liked?user=<%=user%>">願望清單</a></li>
+      <li class=""><a href="login">登出</a></li>
+    </ul>
+  </nav>
+  <div class="mobile-nav-overly"></div>
+</body>
+
+</html>

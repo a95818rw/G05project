@@ -9,13 +9,12 @@ router.get('/register', parkController.register);
 router.get('/introduce', parkController.introduce);
 router.get('/map', parkController.map);
 router.get('/playground', parkController.playground);
+router.get('/liked', parkController.liked);
 
 //redirect
 router.get('/adduser', parkController.adduser);
 router.get('/loginConfirm', parkController.loginConfirm);
 router.post('/addLiked', parkController.addLiked);
-
-
-router.get('/temp', parkController.temp);
+router.post('/deleteliked', parkController.deleteliked);
 
 module.exports = router;

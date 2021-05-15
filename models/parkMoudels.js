@@ -32,10 +32,26 @@ const UPDATE = class UPDATE {
   }
 
   static addLikeList(user, amusementSeq, name, x, y) {
+    db.execute('UPDATE likelist SET liked = ((select liked from amusement where seq = ?)+1) WHERE amusementSeq = ?;',
+      [amusementSeq, amusementSeq]);
+    db.execute('update amusement set liked = (select liked from likelist WHERE amusementSeq = ? group by liked) WHERE Seq = ?;',
+      [amusementSeq, amusementSeq]);
     return db.execute(
-      'INSERT INTO likelist (user, amusementSeq, amusementName, amusementX, amusementY) VALUES (?, ?, ?, ?, ?);',
-      [user, amusementSeq, name, x, y]
+      'INSERT INTO likelist (user, amusementSeq, amusementName, amusementX, amusementY, liked) VALUES (?, ?, ?, ?, ?, (select liked from amusement where seq = ?));',
+      [user, amusementSeq, name, x, y, amusementSeq]
     );
+  }
+
+  static selectliked(user) {
+    return db.execute('SELECT * FROM likelist where user = ?;',[user]);
+  }
+
+  static deleteliked(user, amusementSeq) {
+    db.execute('UPDATE likelist SET liked = ((select liked from amusement where seq = ?)-1) WHERE amusementSeq = ?;',
+      [amusementSeq, amusementSeq]);
+    db.execute('update amusement set liked = (select liked from likelist WHERE amusementSeq = ? group by liked) WHERE Seq = ?;',
+      [amusementSeq, amusementSeq]);
+    return db.execute('DELETE FROM likelist WHERE user = ? and amusementSeq = ?;',[user, amusementSeq]);
   }
 
 };
