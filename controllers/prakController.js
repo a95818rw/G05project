@@ -122,6 +122,7 @@ exports.addLiked = async (req, res) => {
       }
       
     });
+    // park_mod.addupdate(amusementSeq);
   } catch (err) {
     console.log(err);
   }
@@ -164,6 +165,7 @@ exports.deleteliked = async (req, res) => {
   try {
     await park_mod.deleteliked(user, seq).then(([rows]) => {
     });
+    // park_mod.deleteupdate(amusementSeq);
   } catch (err) {
     console.log(err);
     res.redirect(direct);
