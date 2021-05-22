@@ -10,6 +10,7 @@ router.get('/introduce', parkController.introduce);
 router.get('/map', parkController.map);
 router.get('/playground', parkController.playground);
 router.get('/liked', parkController.liked);
+router.get('/route', parkController.route);
 
 //redirect
 router.post('/adduser', parkController.adduser);

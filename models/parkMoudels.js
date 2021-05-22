@@ -21,7 +21,7 @@ const UPDATE = class UPDATE {
   }
 
   static selectAmusement() {
-    return db.execute('SELECT * FROM amusement order by seq;');
+    return db.execute('SELECT * FROM amusement order by liked desc;');
   }
 
   static likeListConfirm(user, amusementSeq) {
@@ -58,6 +58,10 @@ const UPDATE = class UPDATE {
       [amusementSeq, amusementSeq]);
     db.execute('update amusement set liked = (select liked from likelist WHERE amusementSeq = ? group by liked) WHERE Seq = ?;',
       [amusementSeq, amusementSeq]);
+  }
+
+  static selectlikedord(user) {
+    return db.execute('SELECT * FROM likelist where user = ? order by amusementSeq;',[user]);
   }
 
 };

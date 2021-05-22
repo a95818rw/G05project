@@ -1514,3 +1514,23 @@ table td a{
   background-color: #E34AF7;
   color: white;
 }
+.go{
+  background-color: #00FF2A;
+  padding:5px 20px;
+  border-radius: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+}
+.golist{
+  background-color: #C7D3ED;
+  padding:5px 20px;
+  border-radius: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  margin:0 auto;
+  text-align: center;
+}
+.downlist{
+  transform: translate(2125%,0);
+}

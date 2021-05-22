@@ -173,3 +173,18 @@ exports.deleteliked = async (req, res) => {
   res.redirect(direct);
 };
 
+exports.route = async (req, res) => {
+  const user = req.query.user;
+  let likeList;
+
+  try {
+    await park_mod.selectlikedord(user).then(([rows]) => {
+      likeList = rows;
+    });
+  } catch (err) {
+    console.log(err);
+  }
+
+  res.render('route', { user: user, likeList: likeList});
+
+};
