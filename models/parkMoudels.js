@@ -8,7 +8,7 @@ const UPDATE = class UPDATE {
 
   static adduser(name, email, pwd) {
     return db.execute(
-      'INSERT INTO `map`.`user` (`name`, `email`, `pwd`) VALUES (?, ?, ?);',
+      'INSERT INTO user (name, email, pwd) VALUES (?, ?, ?);',
       [name, email, pwd]
     );
   }
