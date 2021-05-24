@@ -1,5 +1,7 @@
+const { MD5 } = require('crypto-js');
 const park_mod = require('../models/parkMoudels');
-  
+const md = require('./md5')
+
 exports.getEntrancepage = async (req, res) => {
     res.render('entrance', { title: 'Express' });
 };
@@ -13,9 +15,12 @@ exports.adduser = async (req, res) => {
     const name = req.body.name;
     const email = req.body.email;
     const pwd = req.body.pwd;
+    var hash;
     var userlist;
     var x = 0;
-
+    console.log(pwd);
+    hash = pwd+"fv@ASDhjvsf";
+    hash = MD5(hash).words[0];
     try {
       await park_mod.selectUser().then(([rows]) => {
         userlist = rows;
@@ -31,7 +36,7 @@ exports.adduser = async (req, res) => {
     if(x == 0){
 
       try {
-        await park_mod.adduser(name, email, pwd).then(([rows]) => {
+        await park_mod.adduser(name, email, hash).then(([rows]) => {
           res.redirect('/login');
         });
       } catch (err) {
@@ -52,6 +57,7 @@ exports.loginConfirm = async (req, res) => {
   const pwd = req.body.pwd;
 
   var CorrectPwd;
+  var hash;
   var direct;
 
   try {
@@ -62,8 +68,11 @@ exports.loginConfirm = async (req, res) => {
     console.log(err);
     res.redirect('/login');
   }
+
+  hash = pwd+"fv@ASDhjvsf";
+  hash = MD5(hash).words[0];
   
-  if(CorrectPwd == pwd){
+  if(CorrectPwd == hash){
     direct = "/introduce?user=" + name;
     console.log(direct);
     res.redirect(direct);
